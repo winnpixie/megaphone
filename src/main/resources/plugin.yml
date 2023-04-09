@@ -1,0 +1,14 @@
+name: "ServerSettings"
+version: "0.0.1"
+description: "Automatically broadcast pre-defined messages after set periods of time."
+author: "Hannah"
+website: "https://winnpixie.xyz/"
+main: "io.github.winnpixie.megaphone.Megaphone"
+api-version: 1.16
+
+commands:
+  megaphone:
+    permission: megaphone.command
+    aliases: [ "mp" ]
+    description: "Execute various Megaphone actions."
+    usage: "/megaphone [subcommand] ..."
