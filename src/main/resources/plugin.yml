@@ -1,4 +1,4 @@
-name: "ServerSettings"
+name: "Megaphone"
 version: "0.0.1"
 description: "Automatically broadcast pre-defined messages after set periods of time."
 author: "Hannah"

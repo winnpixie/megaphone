@@ -26,16 +26,18 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.16.5-R0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>io.github.winnpixie</groupId>
-            <artifactId>hukkit</artifactId>
-            <version>0.0.6</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>23.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.winnpixie</groupId>
+            <artifactId>hukkit</artifactId>
+            <version>0.0.7</version>
         </dependency>
     </dependencies>
 

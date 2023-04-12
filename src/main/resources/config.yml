@@ -1,4 +1,5 @@
 announcer:
+  enabled: true
   interval: 15
   random-order: false
   prefix: "&#B00B1E=== Megaphone ===\n&r "
