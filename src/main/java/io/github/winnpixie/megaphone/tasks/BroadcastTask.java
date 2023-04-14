@@ -15,6 +15,7 @@ public class BroadcastTask implements Runnable {
 
     @Override
     public void run() {
+        if (!Config.ENABLED) return;
         if (Config.MESSAGES.isEmpty()) return;
 
         if (Config.RANDOMIZE) {

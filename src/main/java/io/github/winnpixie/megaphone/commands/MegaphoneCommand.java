@@ -24,8 +24,8 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
             .create();
     private final BaseComponent[] usageMessage = new ComponentBuilder("=== Megaphone ===")
             .color(ChatColor.GOLD)
-            .append("\n/megaphone reload - Reloads the plugin configuration from file.", ComponentBuilder.FormatRetention.NONE)
-            .append("\n/megaphone announce <index> - Broadcasts the message at <index>, starting from 1.")
+            .append("\n/megaphone reload|rl - Reloads the plugin configuration from file.", ComponentBuilder.FormatRetention.NONE)
+            .append("\n/megaphone announce|a <index> - Broadcasts the message at <index>, starting from 1.")
             .create();
 
     public MegaphoneCommand(Megaphone plugin) {
@@ -35,6 +35,7 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!sender.hasPermission("megaphone.command") && !sender.isOp()) {
+            sender.spigot().sendMessage(CommandErrors.LACKS_PERMISSIONS);
             return true;
         }
 
@@ -53,6 +54,11 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
     }
 
     private void reloadConfiguration(CommandSender sender) {
+        if (!sender.hasPermission("megaphone.command.reload") && !sender.isOp()) {
+            sender.spigot().sendMessage(CommandErrors.LACKS_PERMISSIONS);
+            return;
+        }
+
         getPlugin().broadcastTask.cancel();
         getPlugin().reloadConfig();
 
@@ -67,6 +73,11 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
     }
 
     private void announceAt(CommandSender sender, String[] args) {
+        if (!sender.hasPermission("megaphone.command.announce") && !sender.isOp()) {
+            sender.spigot().sendMessage(CommandErrors.LACKS_PERMISSIONS);
+            return;
+        }
+
         if (args.length < 2) {
             sender.spigot().sendMessage(CommandErrors.MISSING_ARGUMENTS);
             return;

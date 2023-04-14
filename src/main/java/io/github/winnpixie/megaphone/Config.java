@@ -5,6 +5,9 @@ import io.github.winnpixie.hukkit.configs.Link;
 import java.util.List;
 
 public class Config {
+    @Link(path = "announcer.enabled")
+    public static boolean ENABLED;
+
     @Link(path = "announcer.interval")
     public static double INTERVAL;
 

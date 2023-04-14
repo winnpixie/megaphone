@@ -1,10 +1,10 @@
 announcer:
   enabled: true
-  interval: 15
+  interval: 30
   random-order: false
-  prefix: "&#B00B1E=== Megaphone ===\n&r "
-  suffix: " \n&r&#B00B1E=== Megaphone ==="
+  prefix: "&#B00B1E=== MP BEGIN ===\n&r "
+  suffix: " \n&r&#B00B1E=== MP END ==="
   messages:
     - "&eHello, world!"
-    - "&lThe cake is a lie."
+    - "&lThe cake is a &#FF0000&llie."
     - "&9Look Ma\n&cTwo lines!"
