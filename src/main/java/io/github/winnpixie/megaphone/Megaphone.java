@@ -24,7 +24,7 @@ public class Megaphone extends JavaPlugin {
         this.broadcastTask = getServer().getScheduler().runTaskTimer(this, new BroadcastTask(this), 0L,
                 (long) (20.00 * Config.INTERVAL));
 
-        Hukkit.addCommand(new MegaphoneCommand(this), this);
+        Hukkit.addCommand(new MegaphoneCommand(this));
 
         getLogger().info("Megaphone init DONE");
     }

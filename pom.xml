@@ -37,7 +37,7 @@
         <dependency>
             <groupId>io.github.winnpixie</groupId>
             <artifactId>hukkit</artifactId>
-            <version>0.0.7</version>
+            <version>0.0.10</version>
         </dependency>
     </dependencies>
 
@@ -53,6 +53,8 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <minimizeJar>true</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <filters>
                                 <filter>
