@@ -35,7 +35,7 @@ public class Megaphone extends JavaPlugin {
     }
 
     public void broadcast(int index) {
-        var msg = TextHelper.formatColors(Config.formatMessage(Config.MESSAGES.get(index)));
+        var msg = TextHelper.formatText(Config.formatMessage(Config.MESSAGES.get(index)));
 
         getServer().spigot().broadcast(TextComponent.fromLegacyText(msg));
     }

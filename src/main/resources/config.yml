@@ -2,9 +2,9 @@ announcer:
   enabled: true
   interval: 30
   random-order: false
-  prefix: "&#B00B1E=== MP BEGIN ===\n&r "
-  suffix: " \n&r&#B00B1E=== MP END ==="
+  prefix: "<#B00B1E>=== MP BEGIN ===\n<reset> "
+  suffix: " \n<reset><#B00B1E>=== MP END ==="
   messages:
-    - "&eHello, world!"
-    - "&lThe cake is a &#FF0000&llie."
-    - "&9Look Ma\n&cTwo lines!"
+    - "<yellow>Hello, world!"
+    - "<bold>The cake is a <#FF0000><bold>lie."
+    - "<blue>Look Ma\n<red>Two lines!"

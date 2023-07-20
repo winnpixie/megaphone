@@ -6,7 +6,7 @@
 
     <groupId>io.github.winnpixie</groupId>
     <artifactId>megaphone</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>io.github.winnpixie</groupId>
             <artifactId>hukkit</artifactId>
-            <version>0.0.10</version>
+            <version>0.0.12</version>
         </dependency>
     </dependencies>
 
