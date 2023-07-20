@@ -24,6 +24,6 @@ public class Config {
     public static List<String> MESSAGES;
 
     public static String formatMessage(String message) {
-        return "%s%s%s".formatted(Config.PREFIX, message, Config.SUFFIX);
+        return String.format("%s%s%s", Config.PREFIX, message, Config.SUFFIX);
     }
 }

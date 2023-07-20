@@ -45,9 +45,17 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
         }
 
         switch (args[0].toLowerCase()) {
-            case "reload", "rl" -> reloadConfiguration(sender);
-            case "announce", "a" -> announceAt(sender, args);
-            default -> sender.spigot().sendMessage(CommandErrors.INVALID_ARGUMENTS);
+            case "reload":
+            case "rl":
+                reloadConfiguration(sender);
+                break;
+            case "announce":
+            case "a":
+                announceAt(sender, args);
+                break;
+            default:
+                sender.spigot().sendMessage(CommandErrors.INVALID_ARGUMENTS);
+                break;
         }
 
         return true;
@@ -62,7 +70,7 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
         getPlugin().broadcastTask.cancel();
         getPlugin().reloadConfig();
 
-        var adapter = (BukkitAdapter) getPlugin().configManager.getAdapter();
+        BukkitAdapter adapter = (BukkitAdapter) getPlugin().configManager.getAdapter();
         adapter.setConfig(getPlugin().getConfig());
         getPlugin().configManager.load();
 
@@ -92,7 +100,7 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
             return;
         }
 
-        var msgIdx = Integer.parseInt(args[1]);
+        int msgIdx = Integer.parseInt(args[1]);
         if (msgIdx > Config.MESSAGES.size()) {
             sender.spigot().sendMessage(CommandErrors.INVALID_ARGUMENTS);
             return;
