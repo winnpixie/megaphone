@@ -4,7 +4,7 @@ import io.github.winnpixie.hukkit.Hukkit;
 import io.github.winnpixie.hukkit.TextHelper;
 import io.github.winnpixie.hukkit.configs.AnnotatedConfigurationManager;
 import io.github.winnpixie.hukkit.configs.adapters.BukkitAdapter;
-import io.github.winnpixie.megaphone.commands.MegaphoneCommand;
+import io.github.winnpixie.megaphone.commands.admin.MegaphoneCommand;
 import io.github.winnpixie.megaphone.tasks.BroadcastTask;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.plugin.java.JavaPlugin;

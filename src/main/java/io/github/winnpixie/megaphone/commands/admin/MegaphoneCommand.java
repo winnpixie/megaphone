@@ -1,4 +1,4 @@
-package io.github.winnpixie.megaphone.commands;
+package io.github.winnpixie.megaphone.commands.admin;
 
 import io.github.winnpixie.hukkit.MathHelper;
 import io.github.winnpixie.hukkit.commands.BaseCommand;
