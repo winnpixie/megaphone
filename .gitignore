@@ -5,5 +5,5 @@ target/
 .idea/
 *.iml
 
-#  VSCode
+# VS Code
 .vscode/
