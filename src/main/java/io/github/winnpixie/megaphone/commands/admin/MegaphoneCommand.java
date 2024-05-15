@@ -1,9 +1,9 @@
 package io.github.winnpixie.megaphone.commands.admin;
 
-import io.github.winnpixie.hukkit.MathHelper;
-import io.github.winnpixie.hukkit.commands.BaseCommand;
-import io.github.winnpixie.hukkit.commands.CommandErrors;
-import io.github.winnpixie.hukkit.configs.adapters.BukkitAdapter;
+import io.github.winnpixie.commons.spigot.MathHelper;
+import io.github.winnpixie.commons.spigot.commands.BaseCommand;
+import io.github.winnpixie.commons.spigot.commands.CommandErrors;
+import io.github.winnpixie.commons.spigot.configs.adapters.BukkitAdapter;
 import io.github.winnpixie.megaphone.Config;
 import io.github.winnpixie.megaphone.Megaphone;
 import io.github.winnpixie.megaphone.tasks.BroadcastTask;
@@ -19,14 +19,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MegaphoneCommand extends BaseCommand<Megaphone> {
-    private final BaseComponent[] reloadedMessage = new ComponentBuilder("Announcements reloaded!")
+    private final BaseComponent reloadedMessage = new ComponentBuilder("Announcements reloaded!")
             .color(ChatColor.GREEN)
-            .create();
-    private final BaseComponent[] usageMessage = new ComponentBuilder("=== Megaphone ===")
+            .build();
+    private final BaseComponent usageMessage = new ComponentBuilder("=== Megaphone ===")
             .color(ChatColor.GOLD)
             .append("\n/megaphone reload|rl - Reloads the plugin configuration from file.", ComponentBuilder.FormatRetention.NONE)
             .append("\n/megaphone announce|a <index> - Broadcasts the message at <index>, starting from 1.")
-            .create();
+            .build();
 
     public MegaphoneCommand(Megaphone plugin) {
         super(plugin, "megaphone");
@@ -70,9 +70,9 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
         getPlugin().broadcastTask.cancel();
         getPlugin().reloadConfig();
 
-        BukkitAdapter adapter = (BukkitAdapter) getPlugin().configManager.getAdapter();
+        BukkitAdapter adapter = (BukkitAdapter) getPlugin().configuration.getAdapter();
         adapter.setConfig(getPlugin().getConfig());
-        getPlugin().configManager.load();
+        getPlugin().configuration.load();
 
         getPlugin().broadcastTask = sender.getServer().getScheduler().runTaskTimer(getPlugin(),
                 new BroadcastTask(getPlugin()), 0L, (long) (20.00 * Config.INTERVAL));

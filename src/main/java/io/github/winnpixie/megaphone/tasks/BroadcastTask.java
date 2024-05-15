@@ -1,6 +1,6 @@
 package io.github.winnpixie.megaphone.tasks;
 
-import io.github.winnpixie.hukkit.MathHelper;
+import io.github.winnpixie.commons.spigot.MathHelper;
 import io.github.winnpixie.megaphone.Config;
 import io.github.winnpixie.megaphone.Megaphone;
 
