@@ -1,15 +1,16 @@
 package io.github.winnpixie.megaphone.commands.admin;
 
 import io.github.winnpixie.commons.spigot.MathHelper;
+import io.github.winnpixie.commons.spigot.TextHelper;
 import io.github.winnpixie.commons.spigot.commands.BaseCommand;
 import io.github.winnpixie.commons.spigot.commands.CommandErrors;
-import io.github.winnpixie.commons.spigot.configs.adapters.BukkitAdapter;
+import io.github.winnpixie.commons.spigot.configurations.adapters.BukkitConfigurationAdapter;
 import io.github.winnpixie.megaphone.Config;
 import io.github.winnpixie.megaphone.Megaphone;
-import io.github.winnpixie.megaphone.tasks.BroadcastTask;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -26,6 +27,7 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
             .color(ChatColor.GOLD)
             .append("\n/megaphone reload|rl - Reloads the plugin configuration from file.", ComponentBuilder.FormatRetention.NONE)
             .append("\n/megaphone announce|a <index> - Broadcasts the message at <index>, starting from 1.")
+            .append("\n/megaphone say <message> - Broadcasts <message> as if it were a standard announcement.")
             .build();
 
     public MegaphoneCommand(Megaphone plugin) {
@@ -53,6 +55,9 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
             case "a":
                 announceAt(sender, args);
                 break;
+            case "say":
+                say(sender, args);
+                break;
             default:
                 sender.spigot().sendMessage(CommandErrors.INVALID_ARGUMENTS);
                 break;
@@ -67,15 +72,15 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
             return;
         }
 
-        getPlugin().broadcastTask.cancel();
+        getPlugin().stopBroadcast();
+
         getPlugin().reloadConfig();
 
-        BukkitAdapter adapter = (BukkitAdapter) getPlugin().configuration.getAdapter();
-        adapter.setConfig(getPlugin().getConfig());
+        BukkitConfigurationAdapter adapter = (BukkitConfigurationAdapter) getPlugin().configuration.getAdapter();
+        adapter.setConfiguration(getPlugin().getConfig());
         getPlugin().configuration.load();
 
-        getPlugin().broadcastTask = sender.getServer().getScheduler().runTaskTimer(getPlugin(),
-                new BroadcastTask(getPlugin()), 0L, (long) (20.00 * Config.INTERVAL));
+        getPlugin().startBroadcast();
 
         sender.spigot().sendMessage(reloadedMessage);
     }
@@ -107,6 +112,23 @@ public class MegaphoneCommand extends BaseCommand<Megaphone> {
         }
 
         getPlugin().broadcast(msgIdx - 1);
+    }
+
+    private void say(CommandSender sender, String[] args) {
+        if (!sender.hasPermission("megaphone.command.say") && !sender.isOp()) {
+            sender.spigot().sendMessage(CommandErrors.LACKS_PERMISSIONS);
+            return;
+        }
+
+        if (args.length < 2) {
+            sender.spigot().sendMessage(CommandErrors.MISSING_ARGUMENTS);
+            return;
+        }
+
+        String message = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
+        message = TextHelper.formatText(Config.formatMessage(message));
+
+        getPlugin().getServer().spigot().broadcast(TextComponent.fromLegacy(message));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package io.github.winnpixie.megaphone;
 
-import io.github.winnpixie.commons.spigot.configs.Link;
+import io.github.winnpixie.commons.spigot.configurations.Link;
 
 import java.util.List;
 
